@@ -20,5 +20,6 @@ from User.views import UserList, UserDetail
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('users/', UserList.as_view(), name='user-list'),
 ]

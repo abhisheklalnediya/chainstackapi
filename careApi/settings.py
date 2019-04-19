@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     'rest_framework',
+    'oauth2_provider',
 
     'Care',
     'User',
@@ -47,7 +48,9 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'User.User'
 
 REST_FRAMEWORK = {
-
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+    ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     )
