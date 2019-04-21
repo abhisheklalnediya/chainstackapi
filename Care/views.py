@@ -18,7 +18,7 @@ class CareList(generics.ListCreateAPIView):
         serializer.save(owner=self.request.user)
 
 
-class CareDetail(generics.RetrieveUpdateAPIView):
+class CareDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrAdmin]
     queryset = Care.objects.all()
     serializer_class = CareSerializer
