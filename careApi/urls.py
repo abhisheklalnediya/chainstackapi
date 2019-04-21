@@ -16,10 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from User.views import UserList, UserDetail
+from Care.views import CareList, CareDetail
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
     path('users/', UserList.as_view(), name='user-list'),
+    path('users/<int:pk>/', UserList.as_view(), name='user-list'),
+    path('cares/', CareList.as_view(), name='user-list'),
+    path('cares/<int:pk>/', CareDetail.as_view(), name='user-list'),
+
 ]
