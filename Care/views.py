@@ -18,7 +18,7 @@ class CareList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         user = self.request.user
         if user.quota == 0:
-            raise PermissionDenied('Not enough quota')
+            raise PermissionDenied('Not enough quota available')
         serializer.save(owner=self.request.user)
         user.quota -= 1
         user.save() 
