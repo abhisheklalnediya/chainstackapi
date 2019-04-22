@@ -12,7 +12,7 @@ class User(AbstractUser):
     quota = models.IntegerField(default = -1) # -1 = unlimited
 
 class QuotaCredit(models.Model):
-    user = models.ForeignKey(User, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     credit = models.IntegerField()
 
 
