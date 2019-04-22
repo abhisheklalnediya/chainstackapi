@@ -18,6 +18,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from rest_framework.documentation import include_docs_urls
+
 from User.views import UserList, UserDetail, QuotaCreditList
 from Care.views import CareList, CareDetail
 
@@ -25,10 +27,11 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
+    path('docs/', include_docs_urls(title='Chainstack Api')),
+
     path('users/', UserList.as_view(), name='user-list'),
     path('users/<int:pk>/', UserDetail.as_view(), name='user-detail'),
     path('cares/', CareList.as_view(), name='care-list'),
     path('cares/<int:pk>/', CareDetail.as_view(), name='user-detail'),
-    
-    path('users/quotas/', QuotaCreditList.as_view(), name='quota-credit-list')
+    path('users/quotas/', QuotaCreditList.as_view(), name='quota-credit-list'),
 ]

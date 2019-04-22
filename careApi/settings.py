@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     
     'rest_framework',
     'oauth2_provider',
+    'rest_framework_swagger',
 
     'Care',
     'User',
@@ -49,6 +50,7 @@ AUTH_USER_MODEL = 'User.User'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
         'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
