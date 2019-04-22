@@ -9,7 +9,7 @@ class UserList(generics.ListCreateAPIView):
     serializer_class = UserSerializer
 
 
-class UserDetail(generics.RetrieveUpdateAPIView):
+class UserDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [ IsAdminUser ]
     queryset = User.objects.all()
     serializer_class = UserSerializer
