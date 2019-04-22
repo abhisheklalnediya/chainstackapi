@@ -5,6 +5,15 @@ from Care.permissions import IsOwnerOrAdmin
 from rest_framework.exceptions import PermissionDenied
 
 class CareList(generics.ListCreateAPIView):
+    """
+        get:
+        Return a list of care items owned by the user. if the user is admin all care items are shown.
+
+        post:
+        Create a care item. Checks for quota avaliablity, if quota is limited then quota will be reduced by 1 for each created care item. 
+        New users have unlimited quota. If Quota is exhausted, the API will throw a 403 error.
+    """
+
     serializer_class = CareSerializer
     
     def get_queryset(self):
@@ -24,7 +33,14 @@ class CareList(generics.ListCreateAPIView):
         user.save() 
 
 
-class CareDetail(generics.RetrieveUpdateDestroyAPIView):
+class CareDetail(generics.RetrieveDestroyAPIView):
+    """
+        get:
+        Return a details about a care item. Care Item should be owned by the user.
+        
+        delete:
+        Delete a care item, Quota used for this item will not be reverted
+    """
     permission_classes = [IsOwnerOrAdmin]
     queryset = Care.objects.all()
     serializer_class = CareSerializer
